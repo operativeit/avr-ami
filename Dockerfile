@@ -18,7 +18,7 @@ COPY --chown=node:node --from=development /usr/src/app/node_modules ./node_modul
 
 COPY --chown=node:node index.js index.js
 
-COPY --chown=node:node index.js utils.js
+COPY --chown=node:node utils.js utils.js
 
 USER node
 
