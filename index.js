@@ -57,12 +57,13 @@ const handleHangup = async(req, res) => {
                 action: 'Hangup',
                 channel: call.channel
             });
+            res.status(200).json({ message: `Call with UUID ${uuid} redirect with action: ${action}` });
         } else {
             res.status(404).json({ message: `Call with UUID ${uuid} not found` });
         }
         
     } catch (error) {
-        console.error('Error calling Ami action:', error.message);
+        console.log('Error calling Ami action:', error.message);
         res.status(500).json({ message: 'Error communicating with Asterisk' });
     }
 }
@@ -91,12 +92,13 @@ const handleTransfer = async (req, res) => {
                 exten,
                 priority
             });
+            res.status(200).json({ message: `Call with UUID ${uuid} redirect with action: ${action}` });
         } else {
             res.status(404).json({ message: `Call with UUID ${uuid} not found` });
         }
         
     } catch (error) {
-        console.error('Error calling Ami action:', error.message);
+        console.log('Error calling Ami action:', error.message);
         res.status(500).json({ message: 'Error communicating with Asterisk' });
     }
 }
