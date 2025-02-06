@@ -1,6 +1,6 @@
 {
     "name": "avr-ami",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": "Giuseppe Careri <info@gcareri.com> (https://gcareri.com)",
     "description": "Webservice to transfer or terminate a call via AMI",
     "main": "index.js",

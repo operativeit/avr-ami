@@ -50,20 +50,20 @@ const handleHangup = async(req, res) => {
     const { uuid } = req.body;
 
     try {
-        console.log(`Calling ami hangup action uuid:${uuid}`);
+        console.log(`Calling ami hangup action uuid: ${uuid}`);
         const call = findCallByUUID(calls, uuid)
         if (call) {
             const action = await ami.action({
                 action: 'Hangup',
                 channel: call.channel
             });
-            res.status(200).json({ message: `Call with UUID ${uuid} redirect with action: ${action}` });
+            res.status(200).json({ message: `Call with UUID ${uuid} hangup with action: ${action}` });
         } else {
             res.status(404).json({ message: `Call with UUID ${uuid} not found` });
         }
         
     } catch (error) {
-        console.log('Error calling Ami action:', error.message);
+        console.log('Error calling Ami Hangup Action:', error.message);
         res.status(500).json({ message: 'Error communicating with Asterisk' });
     }
 }
@@ -82,7 +82,7 @@ const handleTransfer = async (req, res) => {
     const { uuid, exten, context, priority } = req.body;
 
     try {
-        console.log(`Calling ami redirect action to: ${context},${exten},${priority} with uuid:${uuid}`);
+        console.log(`Calling ami redirect action to: ${context},${exten},${priority} with uuid: ${uuid}`);
         const call = findCallByUUID(calls, uuid)
         if (call) {
             const action = await ami.action({
@@ -98,7 +98,7 @@ const handleTransfer = async (req, res) => {
         }
         
     } catch (error) {
-        console.log('Error calling Ami action:', error.message);
+        console.log('Error calling Ami Redirect Action:', error.message);
         res.status(500).json({ message: 'Error communicating with Asterisk' });
     }
 }
