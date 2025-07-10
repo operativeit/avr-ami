@@ -43,13 +43,12 @@ ami.on("newexten", (event) => {
       calls[event.linkedid].uuid = value;
     }
 
-    if (event.appdata && event.appdata.includes("CALLED_NUM")) {
-      const value = event.appdata.split("=")[1];
-      calls[event.linkedid].called_num = value;
+    if (event.appdata && event.appdata.startsWith("AVR_")) {
+      const data = event.appdata.split("=");
+      const name = data[0].replace("AVR_", "").toLowerCase(); // Normalize the variable name
+      const value = data[1];
+      calls[event.linkedid][name] = value;
     }
-
-    // Other variables can be setted in extensions.conf and accessed here
-    // ...
   }
 });
 
